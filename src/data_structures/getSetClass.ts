@@ -8,7 +8,9 @@ export class GetSet<V> implements ISimpleMapable<V> {
 
     private onSet: VCallback<V> = (v: V) => {};
     private onGet: VCallback<V> = (v: V) => {};
-
+    public get(): V {
+        return this.v
+    }
     constructor(v: V, onGet?: VCallback<V>, onSet?: VCallback<V>) {
         this.v = v;
         ifNotNone(onGet, onGet => (this.onGet = onGet));
@@ -32,6 +34,10 @@ export class GetSet<V> implements ISimpleMapable<V> {
     setV(v: V) {
         this.onSet(v);
         this.v = v;
+    }
+
+    set(v: V){
+        this.setV(v)
     }
 }
 
